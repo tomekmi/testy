@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}	
+	<div class="row">
+	    <div class="col-sm-12">
+		    <h1>Witaj {{ user.username }}!</h1>
+		    Wybierz test z poniższej listy: <br>
+		    {% for testRow in tests %}
+			    <h4><a href="/test/{{ testRow.id }}">{{ testRow.name }}</h4></a> <small>{{ testRow.description }}</small> <br>
+		    {% endfor %}
+		    <div class="pagination">
+		      <span class="step-links">
+			    {% if tests.has_previous %}
+				    <a href="?page={{ tests.previous_page_number }}">&larr;</a>
+			    {% endif %}
+
+			    <span class="current">
+				    Strona {{ tests.number }} z {{ tests.paginator.num_pages }}.
+			    </span>
+
+			    {% if tests.has_next %}
+				    <a href="?page={{ tests.next_page_number }}">&rarr;</a>
+			    {% endif %}
+		      </span>
+		    </div>
+	     </div>
+	</div>
+
+{% endblock %}

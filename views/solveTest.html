@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block content %}
+	<div class="row">
+	    <div class="col-sm-12">
+		  <a href="/">Powrót do listy testów</a>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-sm-12">
+
+		<h1>Test z: {{ test.name }}</h1><small>{{ test.description }}</small>
+		<hr>
+		<form class="form-horizontal" role="form" action="/test/{{ test.id }}/check" method="POST" >
+		{% csrf_token %}
+		  <ol>
+		  {% for question in questions %}
+		      <li>
+			  {{ question.question }} <br>
+			  <ul class="list-unstyled">
+			  {% for answer in answers|dictkeyvalue:question.id %}
+			      <li><input type="checkbox" value="{{ question.id }}|{{ answer.id }}" id="q[{{ question.id }}][{{ answer.id }}]" name="answers{{ question.id }}|{{ answer.id }}">{{ answer.answer }}</li>
+			  {% endfor %}
+			  </ul>
+		      </li>
+		  {% endfor %}
+		</ol>
+		<div class="form-group">
+		    <div class="col-sm-7">
+			<button type="submit" class="btn btn-primary">Zakończ test i sprawdź swój wynik</button>    
+		    </div>
+		</div
+		</form>
+	    </div>
+	</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load app_filters %}
+{% block content %}
+	<h1>Test z: {{ test.name }}</h1><small>{{ test.description }}</small>
+	<hr>
+	<h3>Wynik: {{ testResult }} z {{ testMaxResult }} pkt. ({{ testResultPercent|floatformat:2 }}%)</h3>
+	<p>Twój wynik został również wysłany na adres e-mail podany podczas rejestracji.</p>
+{% endblock %}

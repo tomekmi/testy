@@ -1,0 +1,8 @@
+{% autoescape off %}
+<h2>Witaj {{ user.username }}!</h2>
+<hr>
+<h4>Dziękujemy za rozwiązenie testu z: {{ test.name }}</h4>
+<hr>
+<p>Twój wynik: <strong>{{ testResult }} z {{ testMaxResult }} pkt. ({{ testResultPercent|floatformat:2 }}%)</strong></p>
+<hr>
+{% endautoescape %}
