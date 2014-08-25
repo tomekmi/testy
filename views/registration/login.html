@@ -1,15 +1,39 @@
 {% extends "base.html" %}
-{% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %} 
-  {{ form.as_p }}
-
-  <input type="submit" value="{% trans 'Log in' %}" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 roundedDiv">
+    <h3>Logowanie</h3>
+    <form class="form-horizontal" role="form" action="/accounts/login/" method="POST" >
+	{% csrf_token %}
+	<div class="form-group">
+	    <label for="username" class="col-sm-3 control-label">Login</label>
+	    <div class="col-sm-9">
+		<input id="username" name="username" type="text" class="form-control" placeholder="podaj login">  
+		{{ form.username.errors }}
+		{% if form.non_field_errors %}
+		    <ul class='form-errors'>
+			{% for error in form.non_field_errors %}
+			    <li>{{ error }}</li>
+			{% endfor %}
+		    </ul>
+		{% endif %}  
+	    </div>
+	</div>
+	<div class="form-group">
+	    <label for="password" class="col-sm-3 control-label">Hasło</label>
+	    <div class="col-sm-9">
+		<input id="password" name="password" type="password" class="form-control" placeholder="podaj hasło">    
+		{{ form.password.errors }}
+	    </div>
+	</div>
+	<div class="form-group">
+	    <div class="col-sm-offset-3 col-sm-7">
+		<button type="submit" class="btn btn-primary btn-block">Zaloguj</button>    
+	    </div>
+	</div
+    </form>
+    <p>Nie posiadasz konta? <a href="{% url 'registration_register' %}">Zarejestruj się</a>!</p>
+    </div>
+    <div class="col-sm-4"></div>
 {% endblock %}

@@ -10,7 +10,7 @@ import string
 
 def home(request):
     if not request.user.is_authenticated():
-        return render_to_response('home.html', { }, context_instance=RequestContext(request))
+        return render_to_response('registration/login.html', { }, context_instance=RequestContext(request))
     else:
         testsList = Tests.objects.all()
         paginator = Paginator(testsList, 20) # show only 20 tests per page

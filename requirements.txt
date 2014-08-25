@@ -1,3 +1,4 @@
+django>=1.6.2
 django-registration
 django-nested-inlines 
-pip install -e git+git://github.com/silverfix/django-nested-inlines.git#egg=django-nested-inlines
+-e git://github.com/silverfix/django-nested-inlines.git@b0b6b63dc82a38d7ee37921de868ac20b977c66a#egg=django_nested_inlines-master
